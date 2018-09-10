@@ -8,4 +8,8 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 
 - Version de Docker : `docker -v`
 - Télécharger un container : `docker pull mon_container`
-- Lancer le container souhaité et les paramètres associés : `docker run mon_container -p mon_parametre`
+- Lancer le container souhaité et les paramètres associés : `docker run mon_container -p 3300 -q mon_qarametre`
+  - Liste des parametres possibles :
+    - port : -p
+    - azerty
+- 
