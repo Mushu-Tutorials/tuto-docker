@@ -1,5 +1,11 @@
 # Tutoriel Docker
 
+- [Installation](#installation "Installation")
+- [Commandes Docker](# "Commandes Docker")
+- [Les attributs](# "Les attributs")
+- [Test de Docker](# "Test de Docker")
+- []()
+
 ## Installation
 
 Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com/get-started "Docker Installer")
@@ -8,6 +14,8 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 ## Commandes Docker
 
 - Version et info de Docker : `docker -v`, `docker version` et `docker info`
+- Aide sur les commandes tapées : `docker MaCommandeDocker --help`
+- Chercher l'image du container souhaité sur [DockerHub](https://hub.docker.com/ "DockerHub") ou via la commande `docker search MonContainer`
 - Télécharger l'image d'un container : `docker pull mon_container`
 - Lister les images des containers téléchargés : `docker images` [-a pour lister toutes les images]
 - Lancer le container souhaité et les paramètres associés : `docker run mon_container -p 3300 -q mon_qarametre`
@@ -17,6 +25,12 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 - Lister les images téléchargées : `docker image ls` [--all ]
 - Lister les containers qui sont actuellement lancés : `docker ps`
 - Utiliser le container : `docker exec mon_container`
+
+## Les attributs
+
+- `-i`
+- `-t`
+- ``
 
 ## Test de Docker
 
