@@ -87,7 +87,7 @@ CMD ["python", "app.py"]
 ### Exécution de commandes via le DOCKERFILE
 
 Il est possible d'exécuter des commandes dans le container que l'on construit grâce à la commande `RUN [commande]`.  
-__/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seule ligne, la commande ayant déjà était exécutée lors de la compilation, ne le sera pas ré-exécutée. Pour pouvoir mettre à jour correctement un paquet, il est préférable de mettre les différents paquets sur différentes lignes (comme ci-dessous) /!\_
+__/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seule ligne, la commande ayant déjà était exécutée lors de la compilation, ne le sera pas ré-exécutée. Pour pouvoir mettre à jour correctement un paquet, il est préférable de mettre les différents paquets sur différentes lignes (comme ci-dessous) /!\\_
 
 ```docker
 RUN apt-get update & apt-get install
