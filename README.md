@@ -25,6 +25,7 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 - Lister les images téléchargées : `docker image ls` [--all ]
 - Lister les containers qui sont actuellement lancés : `docker ps`
 - Utiliser le container : `docker exec mon_container`
+- Créer le container __mon_container__ qui exécutera le DOCKERFILE : `docker build -t friendlyhello .`
 
 ## Les attributs
 
@@ -35,7 +36,7 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 ## Test de Docker
 
 - Lancer la commande `docker run hello-world` pour tester l'installation de docker.
-```shell
+```ini
 docker run hello-world
 
 Unable to find image 'hello-world:latest' locally
@@ -47,4 +48,49 @@ Status: Downloaded newer image for hello-world:latest
 Hello from Docker!
 This message shows that your installation appears to be working correctly.
 ...
+```
+
+## Le DOCKERFILE
+
+Le DOCKERFILE  est un fichier Docker qui permet de configurer le container lors de sa création. Il commencera toujours par __FROM__.
+
+```dockerfile
+# Use an official Python runtime as a parent image
+FROM python:2.7-slim
+
+# Set the working directory to /app
+WORKDIR /app
+
+# Copy the current directory contents into the container at /app
+COPY . /app
+
+# Install any needed packages specified in requirements.txt
+RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# Make port 80 available to the world outside this container
+EXPOSE 80
+
+# Define environment variable
+ENV NAME World
+
+# Run app.py when the container launches
+CMD ["python", "app.py"]
+```
+
+### Configuration du DOCKERFILE
+
+- `#` : permet de mettre un commentaire sur la ligne
+- `FROM [...]` : indique la version de l'OS que l'on souhaite utiliser dans ce container. On peut trouver l'ensemble des systèmes sur [DockerHub](https://hub.docker.com/ "DockerHub")
+- `WORKDIR [...]` : permet de définir l'endroit où l'on souhaite travailler
+- `COPY . [...]` : copie l'emplacement courant du projet (ou le dossier/fichier spécifié par un chemin à remplacer par le ".") à l'emplacement indiqué ([...] souvent le même que le WORKDIR). _Exemple (comme ci-dessus) : choix de l'emplacement "WORKDIR /app" et copie du projet dans /app "COPY . /app"_
+
+### Exécution de commandes via le DOCKERFILE
+
+Il est possible d'exécuter des commandes dans le container que l'on construit grâce à la commande `RUN [commande]`.  
+__/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seule ligne, la commande ayant déjà était exécutée lors de la compilation, ne le sera pas ré-exécutée. Pour pouvoir mettre à jour correctement un paquet, il est préférable de mettre les différents paquets sur différentes lignes (comme ci-dessous) /!\_
+
+```docker
+RUN apt-get update & apt-get install
+  \git
+  \mysql
 ```
