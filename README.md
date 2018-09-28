@@ -91,7 +91,7 @@ Il est possible d'exécuter des commandes dans le container que l'on construit g
 __/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seule ligne, la commande ayant déjà était exécutée lors de la compilation, ne le sera pas ré-exécutée. Pour pouvoir mettre à jour correctement un paquet, il est préférable de mettre les différents paquets sur différentes lignes (comme ci-dessous) /!\\__
 
 ```docker
-RUN apt-get update & apt-get install \
+RUN sudo apt-get update && apt-get -y install \
   git \
   mysql
 ```
