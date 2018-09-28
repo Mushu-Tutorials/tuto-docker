@@ -83,6 +83,7 @@ CMD ["python", "app.py"]
 - `FROM [...]` : indique la version de l'OS que l'on souhaite utiliser dans ce container. On peut trouver l'ensemble des systèmes sur [DockerHub](https://hub.docker.com/ "DockerHub")
 - `WORKDIR [...]` : permet de définir l'endroit où l'on souhaite travailler
 - `COPY . [...]` : copie l'emplacement courant du projet (ou le dossier/fichier spécifié par un chemin à remplacer par le ".") à l'emplacement indiqué ([...] souvent le même que le WORKDIR). _Exemple (comme ci-dessus) : choix de l'emplacement "WORKDIR /app" et copie du projet dans /app "COPY . /app"_
+- `\` : en fin de ligne permet d'aller à la ligne
 
 ### Exécution de commandes via le DOCKERFILE
 
@@ -90,7 +91,7 @@ Il est possible d'exécuter des commandes dans le container que l'on construit g
 __/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seule ligne, la commande ayant déjà était exécutée lors de la compilation, ne le sera pas ré-exécutée. Pour pouvoir mettre à jour correctement un paquet, il est préférable de mettre les différents paquets sur différentes lignes (comme ci-dessous) /!\_
 
 ```docker
-RUN apt-get update & apt-get install
-  \git
-  \mysql
+RUN apt-get update & apt-get install \
+  git \
+  mysql
 ```
