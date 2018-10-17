@@ -26,12 +26,25 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 - Lister les containers qui sont actuellement lancés : `docker ps`
 - Utiliser le container : `docker exec mon_container`
 - Créer le container __mon_container__ qui exécutera le DOCKERFILE : `docker build -t friendlyhello .`
+- Arrêter un container : `docker stop mon_container` (ou l'ID du container)
+- Supprimer un container : `docker rm mon_container` (ou l'ID du container)
+- Supprimer une image : `docker image rm mon_image` (ou l'ID de l'image)
 
 ## Les attributs
 
-- `-i`
-- `-t`
-- ``
+- `-it` : pour créer une nouvelle session docker dans le container
+  - `-i`
+  - `-t`
+- `-d` : pour exécuter le container en arrière plan
+- `-e VAR=1` : pour mettreen place dans le container la variable __VAR=1__
+```shell
+# Créer une nouvelle session dans le container `ubuntu_bash`
+docker exec -it ubuntu_bash bash
+// Créer une nouvelle session dans le container `ubuntu_bash` avec la variable `VAR=1`
+docker exec -it -e VAR=1 ubuntu_bash bash
+// Créer dans le container `ubuntu_bash` en arrière plan, le dossier `/tmp/execWorks`
+docker exec -d ubuntu_bash touch /tmp/execWorks
+```
 
 ## Test de Docker
 
