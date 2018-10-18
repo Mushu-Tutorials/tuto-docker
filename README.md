@@ -95,7 +95,9 @@ CMD ["python", "app.py"]
 - `#` : permet de mettre un commentaire sur la ligne
 - `FROM [...]` : indique la version de l'OS que l'on souhaite utiliser dans ce container. On peut trouver l'ensemble des systèmes sur [DockerHub](https://hub.docker.com/ "DockerHub")
 - `WORKDIR [...]` : permet de définir l'endroit où l'on souhaite travailler
-- `COPY . [...]` : copie l'emplacement courant du projet (ou le dossier/fichier spécifié par un chemin à remplacer par le ".") à l'emplacement indiqué ([...] souvent le même que le WORKDIR). _Exemple (comme ci-dessus) : choix de l'emplacement "WORKDIR /app" et copie du projet dans /app "COPY . /app"_
+- `COPY . [...]` : copie l'emplacement courant du projet (ou le dossier/fichier spécifié par un chemin à remplacer par le ".") à l'emplacement indiqué ([...] souvent le même que le WORKDIR). _Exemple (comme ci-dessus) : choix de l'emplacement "WORKDIR /app" et copie du projet dans /app "COPY . /app"_``
+- `CMD [...]` & `ENTRYPOINT [...]` permettent d'exécuter la commande lors du lancement du container
+  - `CMD [...]` ne permet pas l'overwrite de cette commande contrairement `ENTRYPOINT [...]` __(A VERIFIER)__
 - `\` : en fin de ligne permet d'aller à la ligne
 
 ### Exécution de commandes via le DOCKERFILE
