@@ -27,8 +27,19 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 - Utiliser le container : `docker exec mon_container`
 - Créer le container __mon_container__ qui exécutera le DOCKERFILE : `docker build -t friendlyhello .`
 - Arrêter un container : `docker stop mon_container` (ou l'ID du container)
-- Supprimer un container : `docker rm mon_container` (ou l'ID du container)
-- Supprimer une image : `docker image rm mon_image` (ou l'ID de l'image)
+- Supprimer un container ou une image :
+  - tous les containers arrêté : `docker container prune` (ou l'ID du container)
+    - `--force, -f` : ne renvoi pas un message de confirmation
+  - toutes les images non utilisées : `docker image prune -a` (ou l'ID de l'image)
+    - `--all, -a` : toutes les images non utilsées
+    - `--force, -f` : ne renvoi pas un message de confirmation
+  - un container : `docker rm mon_container` (ou l'ID du container)
+  - une image : `docker image rm mon_image` (ou l'ID de l'image)
+- `docker inspect --format='{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' mon_container` : renvoi l'adresse IP du container
+
+### Construire son container
+
+- Créer le container à partir du DOCKERFILE : `docker build -t nom_de_mon_image .`
 
 ## Les attributs
 
