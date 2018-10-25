@@ -1,0 +1,39 @@
+version: "2"
+services:
+  www:
+    build: .
+    ports: 
+      - "8002:80"
+    volumes:
+      - ./www:/var/www/html/
+    links:
+      - db
+    networks:
+      - default
+
+  db:
+    image: mariadb
+    restart: always
+    volumes:
+      - ./dump:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: toor
+      MYSQL_USER: remy
+      MYSQL_PASSWORD: gineys
+    ports:
+      - "3002:3306"
+    networks:
+      - default
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    links: 
+      - db:db
+    ports:
+      - 8082:80
+    environment:
+      MYSQL_USER: user
+      MYSQL_PASSWORD: test
+      MYSQL_ROOT_PASSWORD: test
+volumes:
+  persistent:
