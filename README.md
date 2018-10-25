@@ -40,6 +40,7 @@ Installer Docker en fonction de l'OS : [Docker Installer](https://www.docker.com
 ### Construire son container
 
 - Créer le container à partir du DOCKERFILE : `docker build -t nom_de_mon_image .`
+  - `-f DOCKERFILE_Name`, ajouter cet attribut permet de spécifier un fichier qui a un nom différent du DOCKERFILE (`docker build -t nom_de_mon_image -f DOCKERFILE_Name .`)
 
 ## Les attributs
 
@@ -90,6 +91,14 @@ COPY . /app
 
 # Install any needed packages specified in requirements.txt
 RUN pip install --trusted-host pypi.python.org -r requirements.txt
+
+# to be able to use "nano" with shell on "docker exec -it [CONTAINER ID] bash"
+ENV TERM xterm
+
+# Modifie la ligne "bind-address=127.0.0.1" en "bind-address=0.0.0.0 dans le fichier "/etc/mysql/mariadb.conf.d/50-server.cnf"
+# Grâce à la commande BASH "sed"
+RUN sed -i -e"s/^bind-address\s*=\s*127.0.0.1/bind-address = 0.0.0.0/" /etc/mysql/mariadb.conf.d/50-server.cnf
+
 
 # Make port 80 available to the world outside this container
 EXPOSE 80
