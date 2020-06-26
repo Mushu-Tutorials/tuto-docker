@@ -4,6 +4,7 @@
 - [Commandes Docker](#commandes-docker "Commandes Docker")
 - [Les attributs](#les-attributs "Les attributs")
 - [Test de Docker](#test-de-docker "Test de Docker")
+- [docker-compose](#docker-compose "docker-compose")
 - []()
 
 ## Installation
@@ -129,4 +130,17 @@ __/!\ ATTENTION : Il est à noter que si on met à jour des packets sur une seul
 RUN sudo apt-get update && apt-get -y install \
   git \
   mysql
+```
+
+# Docker-compose
+
+Le fichier **docker-compose.yml** pert de configurer un ensemble de conteneurs et de les manager (deploy, stop, restart, rm...) via un seul fichier.
+
+Il y a possibilité d'ajouter un second fichier (ou plus) **docker-compose.override.yml** qui pourra prendre en paramètre les volumes, ports... et pourra override le `docker-compose.yml`. [Documentation](https://docs.docker.com/compose/extends "docker-compose.override.yml")
+
+Liste des commandes possibles : 
+
+```shell
+docker-compose up -d
+docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d # Custom docker-compose.yml
 ```
